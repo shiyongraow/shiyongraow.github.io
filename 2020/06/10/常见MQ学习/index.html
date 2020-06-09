@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://shiyongraow.github.io">
-  <title>nanomsg学习 | shiyongraow</title>
+  <title>常见MQ学习 | shiyongraow</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="nanomsg是一种高性能的消息通用组件，使用纯C实现，使用简单，在介绍nanomsg之前还是解释一下中间件的概念，有助于加深理解。 中间件：中间件一般用来业务中解耦合，削峰填谷">
+  <meta name="description" content="几种常见的消息队列中间件：简单讲系统A和系统B之间需要进行相互通信，中间件技术能够使双方的通信更为有效率。消息队列是消息中间件的一种实现方式。">
 <meta name="keywords" content="中间件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nanomsg学习">
-<meta property="og:url" content="https://shiyongraow.github.io/2020/03/30/nanomsg学习/index.html">
+<meta property="og:title" content="常见MQ学习">
+<meta property="og:url" content="https://shiyongraow.github.io/2020/06/10/常见MQ学习/index.html">
 <meta property="og:site_name" content="shiyongraow">
-<meta property="og:description" content="nanomsg是一种高性能的消息通用组件，使用纯C实现，使用简单，在介绍nanomsg之前还是解释一下中间件的概念，有助于加深理解。 中间件：中间件一般用来业务中解耦合，削峰填谷">
+<meta property="og:description" content="几种常见的消息队列中间件：简单讲系统A和系统B之间需要进行相互通信，中间件技术能够使双方的通信更为有效率。消息队列是消息中间件的一种实现方式。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-12T09:26:23.549Z">
+<meta property="og:updated_time" content="2020-06-09T16:10:53.601Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nanomsg学习">
-<meta name="twitter:description" content="nanomsg是一种高性能的消息通用组件，使用纯C实现，使用简单，在介绍nanomsg之前还是解释一下中间件的概念，有助于加深理解。 中间件：中间件一般用来业务中解耦合，削峰填谷">
+<meta name="twitter:title" content="常见MQ学习">
+<meta name="twitter:description" content="几种常见的消息队列中间件：简单讲系统A和系统B之间需要进行相互通信，中间件技术能够使双方的通信更为有效率。消息队列是消息中间件的一种实现方式。">
   
     <link rel="alternative" href="/atom.xml" title="shiyongraow" type="application/atom+xml">
   
@@ -192,14 +192,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-nanomsg学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-常见MQ学习" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      nanomsg学习
+      常见MQ学习
     </h1>
   
 
@@ -211,8 +211,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/03/30/nanomsg学习/" class="archive-article-date">
-        <time datetime="2020-03-30T15:39:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
+<a href="/2020/06/10/常见MQ学习/" class="archive-article-date">
+        <time datetime="2020-06-09T16:07:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
 </a>
 
   
@@ -225,7 +225,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">69字</span>
+      <span class="post-count">1.8k字</span>
     </span>
   </span>
 
@@ -234,7 +234,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">6分</span>
     </span>
   </span>
 </div>
@@ -245,8 +245,71 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>nanomsg是一种高性能的消息通用组件，使用纯C实现，使用简单，在介绍nanomsg之前还是解释一下中间件的概念，有助于加深理解。<br><br></p>
-<h2 id="中间件："><a href="#中间件：" class="headerlink" title="中间件："></a><font size="4">中间件：</font></h2><p>中间件一般用来业务中解耦合，削峰填谷</p>
+    <h1 id="几种常见的消息队列"><a href="#几种常见的消息队列" class="headerlink" title="几种常见的消息队列"></a>几种常见的消息队列</h1><p>中间件：简单讲系统A和系统B之间需要进行相互通信，中间件技术能够使双方的通信更为有效率。消息队列是消息中间件的一种实现方式。</p>
+<a id="more"></a>
+<h2 id="消息队列的比较"><a href="#消息队列的比较" class="headerlink" title="消息队列的比较"></a>消息队列的比较</h2><p>常用的消息队列有ActiveMQ, RabbitMQ, RocketMQ,Kafka,ZeroMQ,Nanomsg，各种优缺点如下表</p>
+<table>
+<thead>
+<tr>
+<th>MQ</th>
+<th align="center">优点</th>
+<th align="center">缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RabbitMQ</td>
+<td align="center">并发强，时延低，企业用的多，社区活跃，版本更新快</td>
+<td align="center">使用erlang开发，源码难懂，基本智能依赖社区的维护</td>
+</tr>
+<tr>
+<td>ActiveMQ</td>
+<td align="center">较成熟，主要用于解耦和异步</td>
+<td align="center">性能相对较差，社区不活跃，不推荐</td>
+</tr>
+<tr>
+<td>Kafka</td>
+<td align="center">功能简单但吞吐量高，达十万级，在大数据领域实时计算以及日志采集被大规模使用</td>
+<td align="center">消息可能重复消费，准确性有轻微影响</td>
+</tr>
+<tr>
+<td>ZeroMQ</td>
+<td align="center">号称最快的消息队列，基于C语言开发</td>
+<td align="center">不支持消息持久化，只是一个底层网络通讯库</td>
+</tr>
+<tr>
+<td>nanomsg</td>
+<td align="center">ZeroMQ作者用C重写的通信框架，更小，更快，移植方便</td>
+<td align="center">作为一个消息通信组件，同样不支持消息持久化</td>
+</tr>
+<tr>
+<td>消息持久化：即把数据（如内存中的对象）保存到可永久保存的存储设备中（如磁盘），持久化的主要应用是将内存中的对象存储在关系型的数据库中，也可以存储在磁盘文件或XML文件中。</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2 id="nanomsg的模型介绍"><a href="#nanomsg的模型介绍" class="headerlink" title="nanomsg的模型介绍"></a>nanomsg的模型介绍</h2><ol>
+<li><p>PAIR模型<br>最简单的1对1消息通信模型，可以认为是一个TCP连接，客户端只要send数据，server端就会接收到，客户端不必连续执行send，recv。</p>
+</li>
+<li><p>BUS模型<br>多对多通信，数据双向流动，可以向所有直接相连的节点发送或接受消息，模型会保证每条消息的完整性。该模型可以用于路由规划或者全连接网络构建。 </p>
+</li>
+<li><p>PUB/SUB模型<br>发布者向订阅者推送消息，且不关心是否把全部信息发送给订阅端。如果发布端开始发布信息时，订阅端尚未连接上来，则这些信息会被直接丢弃。订阅端未连接导致信息丢失的问题，<br>可以通过与请求回应模型组合来解决。订阅端只负责接收，而不能反馈，且在订阅端消费速度慢于发布端的情况下，会在订阅端堆积数据。该模型主要用于数据分发。</p>
+</li>
+<li><p>REQ/REP模型<br>由请求端发起请求，然后等待回应端应答。一个请求必须对应一个回应，从请求端的角度来看是发-收配对，从回应端的角度是收-发对。处理完一对才会进行下一对的处理。请求应答模型跟一对一结对模型的区别在于请求端可以是1~N个。</p>
+</li>
+</ol>
+<h2 id="为什么要用消息队列、消息队列的好处与坏处"><a href="#为什么要用消息队列、消息队列的好处与坏处" class="headerlink" title="为什么要用消息队列、消息队列的好处与坏处"></a>为什么要用消息队列、消息队列的好处与坏处</h2><h3 id="1-优点"><a href="#1-优点" class="headerlink" title="1. 优点"></a>1. 优点</h3><p>三个核心场景：解耦、异步、削峰</p>
+<ul>
+<li>场景1、对于某条关键性数据，需要A服务发送给B和C服务，后系统扩展，D服务也要这条数据，C服务不再需要，这时对A服务来说对这条消息的处理就比较麻烦，需要考虑到后续是否还会有服务队这条数据的需求，数据是否顺利到达等等。<pre><code>如果使用MQ，A服务产生一条数据，发送到MQ里面去，哪个服务需要数据自己去MQ里面消费。如果新服务需要数据，直接从MQ里消费即可；如果某个服务不需要这条数据了，就取消对MQ消息的消费即可。这样下来，A服务压根儿不需要去考虑要给谁发送数据，
+不需要维护这个代码，也不需要考虑人家是否调用成功、失败超时等情况。
+可以通过一个MQ，Pub/Sub 发布订阅消息这么一个模型，A 系统就跟其它系统彻底解耦了</code></pre></li>
+<li>场景2、A 系统接收一个请求，需要在自己本地写库，还需要在 BCD 三个系统写库，自己本地写库要 3ms，BCD 三个系统分别写库要 300ms、450ms、200ms。最终请求总延时是 3 + 300 + 450 + 200 = 953ms，接近 1s，用户通过浏览器发起请求，等待个 1s，这几乎是不可接受的。<pre><code>如果使用 MQ，那么 A 系统连续发送 3 条消息到 MQ 队列中，假如耗时 5ms，A 系统从接受一个请求到返回响应给用户，总时长是 3 + 5 = 8ms，对于用户而言，其实感觉上就是点个按钮，8ms后返回，交互体验良好</code></pre></li>
+<li>场景3、每天0:00 到12:00，A 系统风平浪静，每秒并发请求数量就 50 个。结果每次一到 12:00 ~ 13:00 ，每秒并发请求数量突然会暴增到 5k+ 条。但是系统是直接基于 MySQL 的，大量的请求涌入 MySQL，每秒钟对 MySQL 执行约 5k 条 SQL。<br>   一般的MySQL，扛到每秒 2k 个请求就差不多了，如果每秒请求到 5k 的话，可能就直接把 MySQL 给打死了，导致系统崩溃，用户也就没法再使用系统了。但是高峰期一过，到了下午的时候，就成了低峰期，可能也就 1w 的用户同时在网站上操作，<br>   每秒中的请求数量可能也就 50 个请求，对整个系统几乎没有任何的压力。<br>   如果使用 MQ，每秒 5k 个请求写入 MQ，A 系统每秒钟最多处理 2k 个请求，因为 MySQL 每秒钟最多处理 2k 个。A 系统从 MQ 中慢慢拉取请求，每秒钟就拉取 2k 个请求，不要超过自己每秒能处理的最大请求数量就 ok，这样下来，哪怕是高峰期的时候，<br>   A 系统也绝对不会挂掉。而 MQ 每秒钟 5k 个请求进来，就 2k 个请求出去，结果就导致在中午高峰期（1 个小时），可能有几十万甚至几百万的请求积压在 MQ 中。这个短暂的高峰期积压是 ok 的，因为高峰期过了之后，每秒钟就 50 个请求进 MQ，<br>   但是 A 系统依然会按照每秒 2k 个请求的速度在处理。所以说，只要高峰期一过，A 系统就会快速将积压的消息给解决掉。</li>
+</ul>
+<h3 id="2-缺点"><a href="#2-缺点" class="headerlink" title="2. 缺点"></a>2. 缺点</h3><ul>
+<li>系统可用性降低,加入MQ后需要增加额外维护MQ的花销，且MQ万一挂死，影响面很广。</li>
+<li>系统复杂性提高,加入MQ后需要注意消息的可用性，比如重复性发送？消息丢失？消息传递的顺序性？</li>
+<li>一致性问题，多个系统同时使用同一条消息，怎么保证保证他们都同步成功了？<br><br>多有不足，尚待努力！！！</li>
+</ul>
 
     
 
@@ -261,7 +324,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https:/shiyongraow.github.io/2020/03/30/nanomsg学习/" title="nanomsg学习" target="_blank">https:/shiyongraow.github.io/2020/03/30/nanomsg学习/</a>
+          <a href="https:/shiyongraow.github.io/2020/06/10/常见MQ学习/" title="常见MQ学习" target="_blank">https:/shiyongraow.github.io/2020/06/10/常见MQ学习/</a>
         </li>
         
         <li>
@@ -350,7 +413,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://shiyongraow.github.io/2020/03/30/nanomsg学习/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://shiyongraow.github.io/2020/06/10/常见MQ学习/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -365,18 +428,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2020/03/31/rest以及restful记录/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          rest以及restful记录
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/03/29/LeetCode-1-TwoSum/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">LeetCode_1_TwoSum</div>
+    <a href="/2020/04/12/x86和arm架构/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">x86和arm架构</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -536,7 +590,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">life</a>
+                <a href="javascript:void(0)" class="js-tag color4">中间件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,11 +598,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">中间件</a>
+                <a href="javascript:void(0)" class="js-tag color3">rest,restful</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">rest,restful</a>
+                <a href="javascript:void(0)" class="js-tag color5">life</a>
               </li>
              
               <li class="article-tag-list-item">
